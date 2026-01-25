@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZeroHaven | Ethics-Compliant Digital Services for Law Firms</title>
+    <meta name="description" content="High-converting websites, compliant marketing, and practice automation for attorneys. Built by a lawyer who understands the rules.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --bg-card-hover: #1a1a25;
+            --accent-primary: #6366f1;
+            --accent-secondary: #22d3ee;
+            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #22d3ee 100%);
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border-color: #27272a;
+            --success: #22c55e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated gradient background */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(34, 211, 238, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-cta {
+            background: var(--accent-gradient);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--accent-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 1px solid var(--border-color);
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        /* Stats */
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .stat {
+            text-align: left;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Problem Section */
+        #problem {
+            background: linear-gradient(180deg, transparent 0%, rgba(99, 102, 241, 0.03) 50%, transparent 100%);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .problem-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(239, 68, 68, 0.5);
+        }
+
+        .problem-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #ef4444;
+        }
+
+        .problem-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            transition: border-color 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: var(--accent-primary);
+        }
+
+        .service-content h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .service-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .service-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .service-pricing {
+            background: rgba(99, 102, 241, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .price-tier {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .price-tier:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .price-tier h4 {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .price-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .price-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        /* Differentiator Section */
+        #why-us {
+            background: linear-gradient(180deg, transparent 0%, rgba(34, 211, 238, 0.03) 50%, transparent 100%);
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .diff-card {
+            text-align: center;
+            padding: 2.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .diff-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-secondary);
+        }
+
+        .diff-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: var(--accent-gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .diff-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .diff-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Process Section */
+        .process-steps {
+            display: flex;
+            gap: 2rem;
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--border-color);
+        }
+
+        .process-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--bg-card);
+            border: 2px solid var(--accent-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-primary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-step h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .process-step p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        #cta {
+            text-align: center;
+            padding: 8rem 2rem;
+        }
+
+        .cta-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 4rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent-gradient);
+        }
+
+        .cta-box h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .service-card {
+                grid-template-columns: 1fr;
+            }
+
+            .diff-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                flex-direction: column;
+            }
+
+            .process-steps::before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-bg"></div>
+
+    <nav>
+        <div class="logo">ZEROHAVEN</div>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#why-us">Why Us</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#cta">Contact</a></li>
+        </ul>
+        <a href="#cta" class="nav-cta">Get Started</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Built by a lawyer, for lawyers</div>
+            <h1>Digital marketing that won't get you <span>disbarred.</span></h1>
+            <p class="hero-sub">High-converting websites, compliant advertising, and practice automation—built by an attorney who understands the Rules of Professional Responsibility.</p>
+            <div class="hero-ctas">
+                <a href="#cta" class="btn-primary">
+                    Start Your Project
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+                </a>
+                <a href="#services" class="btn-secondary">View Services</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">Ethics Compliant</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">5+</div>
+                    <div class="stat-label">Years Automating Legal</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">50+</div>
+                    <div class="stat-label">State Bar Rules Reviewed</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="problem">
+        <div class="section-header">
+            <div class="section-label">The Problem</div>
+            <h2 class="section-title">Most marketing agencies don't get it.</h2>
+            <p class="section-desc">They write copy that violates your ethics rules, make promises that could trigger discipline, and leave you exposed.</p>
+        </div>
+        <div class="problem-grid">
+            <div class="problem-card">
+                <div class="problem-icon">⚠️</div>
+                <h3>Compliance Violations</h3>
+                <p>Generic agencies use testimonials, guarantees, and claims that violate attorney advertising rules in most states.</p>
+            </div>
+            <div class="problem-card">
+                <div class="problem-icon">💸</div>
+                <h3>Wasted Ad Spend</h3>
+                <p>They target broad keywords, ignore negative keywords, and burn through your budget on clicks that never convert.</p>
+            </div>
+            <div class="problem-card">
+                <div class="problem-icon">🔧</div>
+                <h3>No Legal Tech Expertise</h3>
+                <p>They don't understand your practice management software, intake processes, or what actually drives case acquisition.</p>
+            </div>
+            <div class="problem-card">
+                <div class="problem-icon">📊</div>
+                <h3>Poor Tracking</h3>
+                <p>You have no idea which marketing channels actually bring in cases—or what your real cost per client is.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="section-header">
+            <div class="section-label">Services</div>
+            <h2 class="section-title">Everything your practice needs.</h2>
+            <p class="section-desc">From high-converting websites to fully automated workflows—all built with ethics compliance in mind.</p>
+        </div>
+
+        <div class="services-grid">
+            <!-- Website Service -->
+            <div class="service-card">
+                <div class="service-content">
+                    <h3>Ethics-Compliant Law Firm Websites</h3>
+                    <p>Custom-built websites designed to convert visitors into consultations—without violating your bar's advertising rules.</p>
+                    <ul class="service-features">
+                        <li>5-10 page responsive website</li>
+                        <li>Ethics compliance review & guidance</li>
+                        <li>Mobile-optimized design</li>
+                        <li>Contact forms with lead capture</li>
+                        <li>Basic SEO setup</li>
+                        <li>SSL certificate & security</li>
+                        <li>30-90 day post-launch support</li>
+                    </ul>
+                </div>
+                <div class="service-pricing">
+                    <div class="price-tier">
+                        <h4>Essential</h4>
+                        <div class="price-value">$1,000</div>
+                        <p class="price-desc">5 pages, basic ethics review, 30-day support</p>
+                    </div>
+                    <div class="price-tier">
+                        <h4>Professional</h4>
+                        <div class="price-value">$1,500</div>
+                        <p class="price-desc">7 pages + Google Ads setup, comprehensive review</p>
+                    </div>
+                    <div class="price-tier">
+                        <h4>Premium</h4>
+                        <div class="price-value">$2,500</div>
+                        <p class="price-desc">10+ pages, full marketing stack, 90-day support</p>
+                    </div>
+                    <div class="price-tier">
+                        <h4>Monthly Hosting</h4>
+                        <div class="price-value">$49-99/mo</div>
+                        <p class="price-desc">Hosting, updates, security, analytics</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marketing Service -->
+            <div class="service-card">
+                <div class="service-content">
+                    <h3>Complete Digital Marketing</h3>
+                    <p>A full marketing system that tracks every lead source so you know exactly what's working and where to invest.</p>
+                    <ul class="service-features">
+                        <li>High-converting website</li>
+                        <li>Google Ads campaign + management</li>
+                        <li>Meta (Facebook/Instagram) advertising</li>
+                        <li>Google Analytics 4 + conversion tracking</li>
+                        <li>Meta Pixel installation</li>
+                        <li>Call tracking setup</li>
+                        <li>Monthly performance reporting</li>
+                        <li>Ethics compliance for all materials</li>
+                    </ul>
+                </div>
+                <div class="service-pricing">
+                    <div class="price-tier">
+                        <h4>Growth</h4>
+                        <div class="price-value">$2,000</div>
+                        <p class="price-desc">Website + Google Ads (30 days) + analytics</p>
+                    </div>
+                    <div class="price-tier">
+                        <h4>Accelerate</h4>
+                        <div class="price-value">$3,500</div>
+                        <p class="price-desc">+ Meta Ads, bi-weekly reporting, 60-day process consult</p>
+                    </div>
+                    <div class="price-tier">
+                        <h4>Dominate</h4>
+                        <div class="price-value">$5,000</div>
+                        <p class="price-desc">Full stack, custom dashboard, weekly strategy calls</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Automation Service -->
+            <div class="service-card">
+                <div class="service-content">
+                    <h3>Law Firm Automation</h3>
+                    <p>Stop working IN your practice. I'll analyze your workflows, identify bottlenecks, and build systems that run while you sleep.</p>
+                    <ul class="service-features">
+                        <li>Deep-dive workflow analysis</li>
+                        <li>Technology stack assessment</li>
+                        <li>Prioritized automation roadmap</li>
+                        <li>ROI projections for each recommendation</li>
+                        <li>Tool recommendations with alternatives</li>
+                        <li>Implementation support available</li>
+                        <li>30-day follow-up call</li>
+                    </ul>
+                </div>
+                <div class="service-pricing">
+                    <div class="price-tier">
+                        <h4>Strategy Call</h4>
+                        <div class="price-value">$500</div>
+                        <p class="price-desc">60-min call, quick wins, tech review</p>
+                    </div>
+                    <div class="price-tier">
+                        <h4>Full Analysis</h4>
+                        <div class="price-value">$2,500</div>
+                        <p class="price-desc">90-min deep dive + detailed roadmap + follow-up</p>
+                    </div>
+                    <div class="price-tier">
+                        <h4>Implementation</h4>
+                        <div class="price-value">Custom</div>
+                        <p class="price-desc">$5K-$25K based on scope and firm size</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us">
+        <div class="section-header">
+            <div class="section-label">Why ZeroHaven</div>
+            <h2 class="section-title">Built different. On purpose.</h2>
+        </div>
+        <div class="diff-grid">
+            <div class="diff-card">
+                <div class="diff-icon">⚖️</div>
+                <h3>I'm a Lawyer</h3>
+                <p>I live by the same Rules of Professional Responsibility you do. I know what disclaimers you need and what claims you can't make.</p>
+            </div>
+            <div class="diff-card">
+                <div class="diff-icon">🚀</div>
+                <h3>I'm a Developer</h3>
+                <p>I don't just design pretty mockups—I build the actual systems. Websites, automations, integrations. No outsourcing.</p>
+            </div>
+            <div class="diff-card">
+                <div class="diff-icon">📈</div>
+                <h3>I Track Everything</h3>
+                <p>You'll know exactly which channels bring in cases, what your cost-per-lead is, and where to invest more.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="process">
+        <div class="section-header">
+            <div class="section-label">The Process</div>
+            <h2 class="section-title">Simple. Fast. Compliant.</h2>
+        </div>
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">01</div>
+                <h3>Discovery Call</h3>
+                <p>Tell me about your practice, goals, and pain points. I'll assess your state's ethics rules.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">02</div>
+                <h3>Strategy & Proposal</h3>
+                <p>You get a clear plan with pricing, timeline, and expected outcomes—no surprises.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">03</div>
+                <h3>Build & Review</h3>
+                <p>I build. You review. We iterate until it's perfect—and compliant.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">04</div>
+                <h3>Launch & Optimize</h3>
+                <p>Go live with confidence. I monitor, optimize, and support you after launch.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta">
+        <div class="cta-box">
+            <h2>Ready to get started?</h2>
+            <p>Send me your practice area and state. I'll send you a free ethics compliance checklist and competitive analysis.</p>
+            <a href="mailto:asakingesq@gmail.com?subject=ZeroHaven%20Inquiry" class="btn-primary">
+                Email Me Now
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">ZEROHAVEN</div>
+            <ul class="footer-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#why-us">Why Us</a></li>
+                <li><a href="mailto:asakingesq@gmail.com">Contact</a></li>
+            </ul>
+            <div class="footer-copy">© 2026 ZeroHaven. Ethics-compliant digital services for legal professionals.</div>
+        </div>
+    </footer>
+</body>
+</html>
